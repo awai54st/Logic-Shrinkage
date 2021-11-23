@@ -7,7 +7,16 @@ Logic Shrinkage is developed from LUTNet, an end-to-end hardware-software framew
 ## Repo organisation
 
 We separated ImageNet from small-scale networks due to slight differences in training environments.
-Instructions on how to setup the environments and reproduce our results can be found under each folder.
+Below is an overview of sub-directories.
+
+* __instructions__: detailed instructions on reproducing our results from scratch
+* __lutnet/h5py-2-hls__: script which converts pretrained network (.h5) into HLS header files (.h) and LUT array RTLs (.v)
+* __lutnet/src/library__: HLS library
+* __lutnet/src/network__: Vivado synthesis code
+* __lutnet/src/network/LUTNET_c6__ (or __LUTNET_MNIST__ if dataset is MNIST, __LUTNET_IMAGENET__ if ImageNet): HLS project
+* __lutnet/src/network/vivado_out__: Vivado synthesis output project
+* __training-software__: Tensorflow-based training project
+* __training-software/artefact/2_residuals.h5__: Training output
 
 ## Prerequisites
 
@@ -15,7 +24,7 @@ For training Logic Shrinkage, you should have the following packages installed:
 * Keras (v2)
 * TensorFlow
 
-We also recommend using [Nvidia's docker containers for TensorFlow](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/tensorflow) for training.
+We recommend using [Nvidia's docker containers for TensorFlow](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/tensorflow) to setup training environments.
 We developed the project using __21.06-tf1-py3__ for __MNIST-CIFAR-SVHN__, and __21.06-tf2-py3__ for __ImageNet__, respectively.
 
 For hardware synthesis, we developed and tested the project with Vivado (+ HLS) 2016.3. 
