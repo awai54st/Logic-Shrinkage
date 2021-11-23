@@ -1,17 +1,22 @@
-# LUTNet
+# Logic Shrinkage: Learned FPGA Netlist Sparsity for Efficient Neural Network Inference
+
+In this repository we present Logic Shrinkage, a fine-grained netlist pruning methodology enabling K to be automatically learned for every K-input LUT in a neural network targeted for FPGA inference.
+
+Logic Shrinkage is developed from LUTNet, an end-to-end hardware-software framework for the construction of area-efficient FPGA-based neural network accelerators. Please checkout our previous [repository](https://github.com/awai54st/LUTNet) and publications ([conference paper](https://arxiv.org/abs/1904.00938) and/or [journal article](https://arxiv.org/abs/1910.12625)) on LUTNet.
 
 ## Repo organisation
 
-The repo contains two versions of LUTNet.
-
-* __Unrolled LUTNet__: Operators in convolutional layers are mapped to FPGA resources with one-to-one LUT binding. No BRAM is consumed for weight storage as weights are hardened in LUT configuration masks. Details can be found in our paper _LUTNet: Rethinking Inference in FPGA Soft Logic_.
-* __Tiled LUTNet__: Operators are tiled and reused, trading off area efficiency for resource savings. BRAMs are consumed for weight storage. Details can be found in our article _LUTNet: Learning FPGA Configurations for Highly Efficient Neural Network Inference_.
+We separated ImageNet from small-scale networks due to slight differences in training environments.
+Instructions on how to setup the environments and reproduce our results can be found under each folder.
 
 ## Prerequisites
 
-For training LUTNet, you should have the following packages installed:
+For training Logic Shrinkage, you should have the following packages installed:
 * Keras (v2)
 * TensorFlow
+
+We also recommend using [Nvidia's docker containers for TensorFlow](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/tensorflow) for training.
+We developed the project using __21.06-tf1-py3__ for __MNIST-CIFAR-SVHN__, and __21.06-tf2-py3__ for __ImageNet__, respectively.
 
 For hardware synthesis, we developed and tested the project with Vivado (+ HLS) 2016.3. 
 Newer versions of Vivado HLS do not work with our project. 
@@ -22,65 +27,49 @@ In newer versions of Vivado HLS, loop unrolling factors are limited, reducing th
 <table>
   <tr>
     <td>Dataset</td>
-    <td>Tiling</td>
+    <td>Model</td>
+    <td>Target layer</td>
     <td>Top-1 Accuracy (%)</td>
     <td>LUT</td>
-    <td>FPS</td>
+    <td>FPS (Target layer only)</td>
   </tr>
   <tr>
     <td>MNIST</td>
-    <td>Fully unrolled</td>
-    <td>98.01</td>
-    <td>58192</td>
+    <td>Multilayer Perceptron</td>
+    <td>All dense layers</td>
+    <td>97.47</td>
+    <td>63928</td>
     <td>200M</td>
   </tr>
   <tr>
     <td>SVHN</td>
-    <td>Largest conv layer fully unrolled</td>
-    <td>96.20</td>
-    <td>154814</td>
-    <td>200M (Target layer only)</td>
-  </tr>
-  <tr>
-    <td>SVHN</td>
-    <td>Tiled</td>
-    <td>96.42</td>
-    <td>361528</td>
-    <td>10.2k</td>
+    <td>CNV</td>
+    <td>Largest conv layer</td>
+    <td>96.25</td>
+    <td>179236</td>
+    <td>200M</td>
   </tr>
   <tr>
     <td>CIFAR-10</td>
-    <td>Largest conv layer fully unrolled</td>
-    <td>84.21</td>
-    <td>246044</td>
-    <td>200M (Target layer only)</td>
-  </tr>
-  <tr>
-    <td>CIFAR-10</td>
-    <td>Tiled</td>
-    <td>84.80</td>
-    <td>106776</td>
-    <td>10.2k</td>
+    <td>CNV</td>
+    <td>Largest conv layer</td>
+    <td>84.74</td>
+    <td>220060</td>
+    <td>200M</td>
   </tr>
   <tr>
     <td>ImageNet</td>
-    <td>Largest conv layer fully unrolled</td>
-    <td>41.45</td>
-    <td>496160</td>
-    <td>5.56M (Target layer only)</td>
-  </tr>
-  <tr>
-    <td>ImageNet</td>
-    <td>Tiled</td>
-    <td>41.28</td>
-    <td>482903</td>
-    <td>260</td>
+    <td>Bi-Real-18</td>
+    <td>Largest conv layer</td>
+    <td>53.40</td>
+    <td>690357</td>
+    <td>5.56M</td>
   </tr>
 </table>
 
 ## Citation
 
-If you make use of this code, please acknowledge us by citing our [conference paper](https://arxiv.org/abs/1904.00938) and/or [journal article](https://arxiv.org/abs/1910.12625):
+If you make use of this code, please acknowledge us by citing our conference papers ([FCCM'19](https://arxiv.org/abs/1904.00938), FPGA'22) and/or [journal article](https://arxiv.org/abs/1910.12625):
 
     @inproceedings{lutnet_fccm,
 		author={Wang, Erwei and Davis, James J. and Cheung, Peter Y. K. and Constantinides, George A.},
@@ -94,5 +83,17 @@ If you make use of this code, please acknowledge us by citing our [conference pa
 		title={{LUTNet}: Learning {FPGA} Configurations for Highly Efficient Neural Network Inference},
 		journal={IEEE Transactions on Computers},
 		year={2020},
-		note={to appear}
+		volume = {69},
+		number = {12},
+		issn = {1557-9956},
+		pages = {1795-1808},
+		doi = {10.1109/TC.2020.2978817}
 	}
+	
+	@inproceedings{lutnet_ls_fpga,
+		author={Wang, Erwei and Davis, James J. and Stavrou, Georgios-Ilias and Cheung, Peter Y. K. and Constantinides, George A. and Abdelfattah, Mohamed},
+		title={Logic Shrinkage: Learned {FPGA} Netlist Sparsity for Efficient Neural Network Inference},
+		booktitle={ACM/SIGDA International Symposium on Field-Programmable Gate Arrays},
+		year={2022},
+		note={to appear}
+    }
