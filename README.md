@@ -2,7 +2,7 @@
 
 In this repository we present Logic Shrinkage, a fine-grained netlist pruning methodology enabling K to be automatically learned for every K-input LUT in a neural network targeted for FPGA inference.
 
-Logic Shrinkage is developed from LUTNet, an end-to-end hardware-software framework for the construction of area-efficient FPGA-based neural network accelerators. Please checkout our previous [repository](https://github.com/awai54st/LUTNet) and publications ([conference paper](https://arxiv.org/abs/1904.00938) and/or [journal article](https://arxiv.org/abs/1910.12625)) on LUTNet.
+Logic Shrinkage is developed from LUTNet, an end-to-end hardware-software framework for the construction of area-efficient FPGA-based neural network accelerators. Please checkout our previous [repository](https://github.com/awai54st/LUTNet) and publications ([conference paper](https://arxiv.org/abs/2112.02346) and/or [journal article](https://arxiv.org/abs/1910.12625)) on LUTNet.
 
 ## Repo organisation
 
@@ -78,7 +78,7 @@ In newer versions of Vivado HLS, loop unrolling factors are limited, reducing th
 
 ## Citation
 
-If you make use of this code, please acknowledge us by citing our conference papers ([FCCM'19](https://arxiv.org/abs/1904.00938), FPGA'22) and/or [journal article](https://arxiv.org/abs/1910.12625):
+If you make use of this code, please acknowledge us by citing our conference papers ([FCCM'19](https://arxiv.org/abs/1904.00938), [FPGA'22](https://arxiv.org/abs/2112.02346)) and/or [journal article](https://arxiv.org/abs/1910.12625):
 
     @inproceedings{lutnet_fccm,
 		author={Wang, Erwei and Davis, James J. and Cheung, Peter Y. K. and Constantinides, George A.},
