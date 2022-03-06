@@ -35,7 +35,7 @@ To switch from CIFAR-10 to MNIST or SVHN, please do the following:
 * Edit `lutnet_init.py` line 9-12
 * Edit `logic_shrinkage.py` line 30-36
 * Edit `Binary.py` line 48
-
+* Delete `artefact/dummy.h5`
 
 ### Special instructions on MNIST
 
