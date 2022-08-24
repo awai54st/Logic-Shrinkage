@@ -58,43 +58,6 @@ static ap_fixed<24, 16> thresMem0[L0_PE][L0_TMEM];
 static ap_fixed<24, 16> alphaMem0[L0_PE][L0_TMEM];
 static ap_fixed<24,16> means_in0[numRes];
 static ap_fixed<24,16> means_out0[numRes];
-//static ap_uint<L1_SIMD> weightMem1[L1_PE][L1_WMEM];
-//static ap_fixed<24, 16> thresMem1[L1_PE][L1_TMEM];
-//static ap_fixed<24, 16> alphaMem1[L1_PE][L1_TMEM];
-//static ap_fixed<24,16> means_in1[numRes];
-//static ap_fixed<24,16> means_out1[numRes];
-//static ap_uint<L2_SIMD> weightMem2[L2_PE][L2_WMEM];
-//static ap_fixed<24, 16> thresMem2[L2_PE][L2_TMEM];
-//static ap_fixed<24, 16> alphaMem2[L2_PE][L2_TMEM];
-//static ap_fixed<24,16> means_in2[numRes];
-//static ap_fixed<24,16> means_out2[numRes];
-//static ap_uint<L3_SIMD> weightMem3[L3_PE][L3_WMEM];
-//static ap_fixed<24, 16> thresMem3[L3_PE][L3_TMEM];
-//static ap_fixed<24, 16> alphaMem3[L3_PE][L3_TMEM];
-//static ap_fixed<24,16> means_in3[numRes];
-//static ap_fixed<24,16> means_out3[numRes];
-//static ap_uint<L4_SIMD> weightMem4[L4_PE][L4_WMEM];
-//static ap_fixed<24, 16> thresMem4[L4_PE][L4_TMEM];
-//static ap_fixed<24, 16> alphaMem4[L4_PE][L4_TMEM];
-//static ap_fixed<24,16> means_in4[numRes];
-//static ap_fixed<24,16> means_out4[numRes];
-//static ap_uint<L5_SIMD> weightMem5[L5_PE][L5_WMEM];
-//static ap_fixed<24, 16> thresMem5[L5_PE][L5_TMEM];
-//static ap_fixed<24, 16> alphaMem5[L5_PE][L5_TMEM];
-//static ap_fixed<24,16> means_in5[numRes];
-//static ap_fixed<24,16> means_out5[numRes];
-//static ap_uint<L6_SIMD> weightMem6[L6_PE][L6_WMEM];
-//static ap_fixed<24, 16> thresMem6[L6_PE][L6_TMEM];
-//static ap_fixed<24, 16> alphaMem6[L6_PE][L6_TMEM];
-//static ap_fixed<24,16> means_in6[numRes];
-//static ap_fixed<24,16> means_out6[numRes];
-//static ap_uint<L7_SIMD> weightMem7[L7_PE][L7_WMEM];
-//static ap_fixed<24, 16> thresMem7[L7_PE][L7_TMEM];
-//static ap_fixed<24, 16> alphaMem7[L7_PE][L7_TMEM];
-//static ap_fixed<24,16> means_in7[numRes];
-//static ap_fixed<24,16> means_out7[numRes];
-//static ap_uint<L8_SIMD> weightMem8[L8_PE][L8_WMEM];
-//static ap_fixed<24,16> means_in8[numRes];
 
 
 unsigned int paddedSizeHW(unsigned int in, unsigned int padTo) {
@@ -240,9 +203,6 @@ void BlackBoxJam(ap_uint<64> * in, ap_uint<64> * out, bool doInit,
 		unsigned int targetInd, ap_uint<64> val, ap_fixed<24,16> fix_val) {
 
 unsigned int numReps=2;
-//#pragma HLS RESOURCE variable=thresMem4 core=RAM_S2P_LUTRAM
-//#pragma HLS RESOURCE variable=thresMem5 core=RAM_S2P_LUTRAM
-//#pragma HLS RESOURCE variable=thresMem6 core=RAM_S2P_LUTRAM
 // pragmas for MLBP jam interface
 // signals to be mapped to the AXI Lite slave port
 #pragma HLS INTERFACE s_axilite port=return bundle=control
@@ -262,48 +222,11 @@ unsigned int numReps=2;
 // partition PE arrays
 #pragma HLS ARRAY_PARTITION variable=weightMem0 complete dim=1
 #pragma HLS ARRAY_PARTITION variable=thresMem0 complete dim=1
-//#pragma HLS ARRAY_PARTITION variable=weightMem1 complete dim=1
-//#pragma HLS ARRAY_PARTITION variable=thresMem1 complete dim=1
-//#pragma HLS ARRAY_PARTITION variable=weightMem2 complete dim=1
-//#pragma HLS ARRAY_PARTITION variable=thresMem2 complete dim=1
-//#pragma HLS ARRAY_PARTITION variable=weightMem3 complete dim=1
-//#pragma HLS ARRAY_PARTITION variable=thresMem3 complete dim=1
-//#pragma HLS ARRAY_PARTITION variable=weightMem4 complete dim=1
-//#pragma HLS ARRAY_PARTITION variable=thresMem4 complete dim=1
-//#pragma HLS ARRAY_PARTITION variable=weightMem5 complete dim=1
-//#pragma HLS ARRAY_PARTITION variable=thresMem5 complete dim=1
-//#pragma HLS ARRAY_PARTITION variable=weightMem6 complete dim=1
-//#pragma HLS ARRAY_PARTITION variable=thresMem6 complete dim=1
-//#pragma HLS ARRAY_PARTITION variable=weightMem7 complete dim=1
-//#pragma HLS ARRAY_PARTITION variable=thresMem7 complete dim=1
-//#pragma HLS ARRAY_PARTITION variable=weightMem8 complete dim=1
 
 #pragma HLS ARRAY_PARTITION variable=alphaMem0 complete dim=1
-//#pragma HLS ARRAY_PARTITION variable=alphaMem1 complete dim=1
-//#pragma HLS ARRAY_PARTITION variable=alphaMem2 complete dim=1
-//#pragma HLS ARRAY_PARTITION variable=alphaMem3 complete dim=1
-//#pragma HLS ARRAY_PARTITION variable=alphaMem4 complete dim=1
-//#pragma HLS ARRAY_PARTITION variable=alphaMem5 complete dim=1
-//#pragma HLS ARRAY_PARTITION variable=alphaMem6 complete dim=1
-//#pragma HLS ARRAY_PARTITION variable=alphaMem7 complete dim=1
 
 #pragma HLS ARRAY_PARTITION variable=means_in0 complete dim=1
-//#pragma HLS ARRAY_PARTITION variable=means_in1 complete dim=1
-//#pragma HLS ARRAY_PARTITION variable=means_in2 complete dim=1
-//#pragma HLS ARRAY_PARTITION variable=means_in3 complete dim=1
-//#pragma HLS ARRAY_PARTITION variable=means_in4 complete dim=1
-//#pragma HLS ARRAY_PARTITION variable=means_in5 complete dim=1
-//#pragma HLS ARRAY_PARTITION variable=means_in6 complete dim=1
-//#pragma HLS ARRAY_PARTITION variable=means_in7 complete dim=1
-//#pragma HLS ARRAY_PARTITION variable=means_in8 complete dim=1
 
-//#pragma HLS ARRAY_PARTITION variable=means_out1 complete dim=1
-//#pragma HLS ARRAY_PARTITION variable=means_out2 complete dim=1
-//#pragma HLS ARRAY_PARTITION variable=means_out3 complete dim=1
-//#pragma HLS ARRAY_PARTITION variable=means_out4 complete dim=1
-//#pragma HLS ARRAY_PARTITION variable=means_out5 complete dim=1
-//#pragma HLS ARRAY_PARTITION variable=means_out6 complete dim=1
-//#pragma HLS ARRAY_PARTITION variable=means_out7 complete dim=1
 #pragma HLS ARRAY_PARTITION variable=means_out0 complete dim=1
 
 	if (doInit) {
