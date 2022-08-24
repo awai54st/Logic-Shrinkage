@@ -69,3 +69,5 @@ using namespace std;
 #include "LUTNET_lut5_matrixvector.h"
 #include "LUTNET_lut4_matrixvector.h"
 #include "LUTNET_lut2_matrixvector.h"
+#include "LUTNET_mnist_lut4_matrixvector.h"
+#include "LUTNET_mnist_lut4_matrixvector_noTH.h"
