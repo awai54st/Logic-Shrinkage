@@ -1,0 +1,4 @@
+correct_mask
+uncovered_chin
+uncovered_mouth_nose
+uncovered_nose
