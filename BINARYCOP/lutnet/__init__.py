@@ -1,0 +1,4 @@
+from .bnn import PynqBNN, CnvClassifier, RUNTIME_HW, RUNTIME_SW
+from .bnn import NETWORK_MUCNVLS_BINCOP, NETWORK_MUCNV_BINCOP, NETWORK_CNV_BINCOP, NETWORK_REBNET, NETWORK_CNV, NETWORK_LFC, available_params
+
+__version__ = 0.1
